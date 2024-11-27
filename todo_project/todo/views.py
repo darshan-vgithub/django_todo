@@ -3,7 +3,7 @@ from .models import Todo
 
 def todo_list(request):
     todos = Todo.objects.all()
-    return render(request, 'todo/todo_list.html', {'todos': todos})
+    return render(request, 'todo_list.html', {'todos': todos})
 
 def todo_add(request):
     if request.method == 'POST':
@@ -11,7 +11,7 @@ def todo_add(request):
         description = request.POST['description']
         Todo.objects.create(title=title, description=description)
         return redirect('todo_list')
-    return render(request, 'todo/todo_add.html')
+    return render(request, 'todo_add.html')
 
 def todo_edit(request, id):
     todo = get_object_or_404(Todo, id=id)
@@ -21,11 +21,11 @@ def todo_edit(request, id):
         todo.completed = 'completed' in request.POST
         todo.save()
         return redirect('todo_list')
-    return render(request, 'todo/todo_edit.html', {'todo': todo})
+    return render(request, 'todo_edit.html', {'todo': todo})
 
 def todo_delete(request, id):
     todo = get_object_or_404(Todo, id=id)
     if request.method == 'POST':
         todo.delete()
         return redirect('todo_list')
-    return render(request, 'todo/todo_delete.html', {'todo': todo})
+    return render(request, 'todo_delete.html', {'todo': todo})

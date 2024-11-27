@@ -1,12 +1,99 @@
-<h1>To-Do List</h1>
-<a href="{% url 'todo_add' %}">Add New Task</a>
-<ul>
-    {% for todo in todos %}
-        <li>
-            <strong>{{ todo.title }}</strong> - {{ todo.description }}
-            <a href="{% url 'todo_edit' todo.id %}">Edit</a>
-            <a href="{% url 'todo_delete' todo.id %}">Delete</a>
-            {% if todo.completed %}<span>[Completed]</span>{% endif %}
-        </li>
-    {% endfor %}
-</ul>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To-Do List</title>
+    <style>
+      /* Global Styles */
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 20px;
+      }
+
+      h1 {
+        color: #333;
+        font-size: 2rem;
+        margin-bottom: 20px;
+      }
+
+      /* To-Do List Styles */
+      ul {
+        list-style-type: none;
+        padding: 0;
+      }
+
+      .todo-item {
+        background-color: #fff;
+        padding: 15px;
+        margin: 10px 0;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: background-color 0.3s ease;
+      }
+
+      .todo-item.completed {
+        background-color: #d4edda;
+        text-decoration: line-through;
+        color: #6c757d;
+      }
+
+      a {
+        color: #007bff;
+        text-decoration: none;
+        margin-left: 10px;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+
+      .edit-btn {
+        color: #28a745;
+      }
+
+      .delete-btn {
+        color: #dc3545;
+      }
+
+      .edit-btn:hover,
+      .delete-btn:hover {
+        color: #333;
+      }
+
+      /* Add New Task Link */
+      a[href="{% url 'todo_add' %}"] {
+        display: inline-block;
+        margin: 20px 0;
+        padding: 10px 15px;
+        background-color: #007bff;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 5px;
+      }
+
+      a[href="{% url 'todo_add' %}"]:hover {
+        background-color: #0056b3;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>To-Do List</h1>
+    <a href="{% url 'todo_add' %}">Add New Task</a>
+    <ul>
+      {% for todo in todos %}
+      <li class="todo-item {% if todo.completed %}completed{% endif %}">
+        <strong>{{ todo.title }}</strong> - {{ todo.description }}
+        <a href="{% url 'todo_edit' todo.id %}" class="edit-btn">Edit</a>
+        <a href="{% url 'todo_delete' todo.id %}" class="delete-btn">Delete</a>
+        {% if todo.completed %}<span>[Completed]</span>{% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+  </body>
+</html>

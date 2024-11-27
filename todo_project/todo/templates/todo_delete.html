@@ -1,7 +1,78 @@
-<h1>Delete Task</h1>
-<p>Are you sure you want to delete "{{ todo.title }}"?</p>
-<form method="post">
-    {% csrf_token %}
-    <button type="submit">Delete</button>
-</form>
-<a href="{% url 'todo_list' %}">Cancel</a>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Delete Task</title>
+    <style>
+      /* Global Styles */
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 20px;
+      }
+
+      h1 {
+        color: #333;
+        font-size: 2rem;
+        margin-bottom: 20px;
+      }
+
+      p {
+        font-size: 1.2rem;
+        color: #555;
+        margin-bottom: 20px;
+      }
+
+      /* Form Styles */
+      form {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 500px;
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      button {
+        padding: 10px 20px;
+        background-color: #dc3545;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      button:hover {
+        background-color: #c82333;
+      }
+
+      a {
+        display: inline-block;
+        margin-top: 20px;
+        color: #007bff;
+        text-decoration: none;
+        font-size: 1rem;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Delete Task</h1>
+    <p>Are you sure you want to delete "{{ todo.title }}"?</p>
+    <form method="post">
+      {% csrf_token %}
+      <button type="submit">Delete</button>
+    </form>
+
+    <a href="{% url 'todo_list' %}">Cancel</a>
+  </body>
+</html>
