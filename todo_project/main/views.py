@@ -19,6 +19,7 @@ def index(request):
         # converting json data to dictionary
 
         list_of_data = json.loads(source)
+        print(f"list of data :{list_of_data}")
 
         # data for variable list_of_data
         data = {
